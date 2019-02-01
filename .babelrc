@@ -1,0 +1,20 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            ">0.25%"
+          ]
+        }
+      }
+    ],
+    "react"
+  ],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-es2015-template-literals",
+    "syntax-dynamic-import",
+  ]
+}

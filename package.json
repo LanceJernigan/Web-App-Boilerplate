@@ -1,0 +1,51 @@
+{
+  "name": "PWA Boilerplate",
+  "version": "0.1.0",
+  "description": "PWA Boilerplate",
+  "author": "Lance Jernigan",
+  "keywords": [
+    "react",
+    "redux",
+    "react-router",
+    "code splitting",
+    "service worker",
+    "offline assets",
+    "progressive web app"
+  ],
+  "scripts": {
+    "start": "webpack-dev-server --hot --config webpack.dev.js",
+    "build": "webpack --config webpack.js"
+  },
+  "main": "src/index.js",
+  "dependencies": {
+    "react": "16.3.2",
+    "react-dom": "16.3.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-es6-promise": "^1.1.1",
+    "babel-plugin-transform-es2015-template-literals": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "clean-webpack-plugin": "^1.0.1",
+    "copy-webpack-plugin": "^4.6.0",
+    "dev-server": "^0.0.2",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "postcss-loader": "^3.0.0",
+    "precss": "^4.0.0",
+    "redux-actions": "^2.6.4",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "workbox-webpack-plugin": "^3.6.3"
+  }
+}
