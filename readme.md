@@ -12,4 +12,4 @@ All packages from `node_modules` are broken into individual bundles.  This reduc
 All files are precached by service worker allowing the app to work without a data connection.  The service worker automatically precaches new files when they have been updated.
 
 ## manifest.json
-`manifest.json` is copied from `./public` and provides information for when a user installs app to their homescreen
+`manifest.json` is copied from `./public` and provides information for when a user installs app to their homescreen.  Any changes should be made to the template in `./public`.

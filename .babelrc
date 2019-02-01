@@ -1,7 +1,7 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
         "targets": {
           "browsers": [
@@ -10,10 +10,10 @@
         }
       }
     ],
-    "react"
+    "@babel/preset-react"
   ],
   "plugins": [
-    "transform-object-rest-spread",
+    "@babel/plugin-proposal-object-rest-spread",
     "transform-es2015-template-literals",
     "syntax-dynamic-import",
   ]
