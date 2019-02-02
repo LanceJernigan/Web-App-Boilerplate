@@ -1,10 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
 const workbox = require('workbox-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const config = {
   entry: ['core-js/fn/promise', 'core-js/fn/array/find', 'whatwg-fetch', './src/index.js'],
@@ -44,7 +42,6 @@ const config = {
         test: /\.css$/,
         include: /(src)/,
         use: [
-          // MiniCssExtractPlugin.loader,
           'style-loader',
           'css-loader',
           {
@@ -69,18 +66,6 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    // new ExtractCssChunks({
-    //   filename: "styles/[name].css",
-    //   chunkFilename: "styles/[name].css",
-    //   hot: true, // if you want HMR - we try to automatically inject hot reloading but if it's not working, add it to the config
-    //   orderWarning: true, // Disable to remove warnings about conflicting order between imports
-    //   reloadAll: true, // when desperation kicks in - this is a brute force HMR flag
-    //   cssModules: true // if you use cssModules, this can help.
-    // }),
-    // new MiniCssExtractPlugin({
-    //   filename: "styles/[name].css",
-    //   chunkFilename: "styles/[name].css"
-    // }),
     new CopyWebpackPlugin([
       {
         from: 'public'
@@ -99,7 +84,8 @@ const config = {
           handler: 'cacheFirst',
         },
       ]
-    })
+    }),
+    new CompressionPlugin(),
   ],
 };
 
