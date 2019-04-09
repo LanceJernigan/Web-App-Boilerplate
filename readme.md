@@ -1,6 +1,19 @@
-# PWA Boilerplate
+# Web App Boilerplate
+This boilerplate provides a starting place for building a modern Web App.
 
-## file structure
+## Features
+  - Code Splitting
+  - Offline Assets
+  - Service Worker
+  - SCSS Support
+
+## Getting Started
+`git clone https://github.com/LanceJernigan/Web-App-Boilerplate.git`
+`cd Web-Wpp-Boilerplace`
+`npm install`
+`npm start`
+
+# Features
 
 ## PostCSS
 CSS is ran through post CSS so we can use modern standards without using scss's custom syntax.  Each component loads its own css dependencies allowing css to be bundled into the comonent's bundle.
