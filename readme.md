@@ -8,10 +8,12 @@ This boilerplate provides a starting place for building a modern Web App.
   - SCSS Support
 
 ## Getting Started
-`git clone https://github.com/LanceJernigan/Web-App-Boilerplate.git`
-`cd Web-Wpp-Boilerplace`
-`npm install`
-`npm start`
+```bash
+git clone https://github.com/LanceJernigan/Web-App-Boilerplate.git
+cd Web-Wpp-Boilerplace
+npm install
+npm start
+```
 
 # Features
 
