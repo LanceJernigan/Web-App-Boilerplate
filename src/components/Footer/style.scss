@@ -1,0 +1,28 @@
+.footer {
+  a {
+    background: #3265A7;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+
+    &:hover, &:active, &:focus {
+      opacity: .9;
+    }
+  }
+
+  p {
+    font-size: 1.3rem;
+    color: #fff;
+    margin: 0 1rem;
+    font-weight: 100;
+  }
+
+  &-icon {
+    width: 30px;
+  }
+}
