@@ -1,6 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const workbox = require('workbox-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const config = {
   entry: ['core-js/fn/promise', 'core-js/fn/array/find', 'whatwg-fetch', './src/index.js'],
@@ -44,6 +47,7 @@ const config = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({
       filename: 'assets/css/site.css',
       chunkFilename: '[id].css',
@@ -56,6 +60,18 @@ const config = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
+    new workbox.GenerateSW({
+      swDest: 'service-worker.js',
+      clientsClaim: true,
+      skipWaiting: true,
+      runtimeCaching: [
+        {
+          urlPattern: 'http://i.imgur.com/**.{jpg,png}',
+          handler: 'cacheFirst',
+        },
+      ]
+    }),
+    new CompressionPlugin(),
   ],
 };
 

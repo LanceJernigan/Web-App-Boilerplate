@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const workbox = require('workbox-webpack-plugin');
 
 const config = {
   entry: ['core-js/fn/promise', 'core-js/fn/array/find', 'whatwg-fetch', './src/index.js'],
@@ -16,6 +17,22 @@ const config = {
     compress: true,
     port: 9000,
     historyApiFallback: true,
+  },
+  optimization: {
+    splitChunks: {
+        chunks: 'all',
+        maxInitialRequests: Infinity,
+        minSize: 0,
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name(module) {
+              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+              return `npm.${packageName.replace('@', '')}`;
+            },
+          },
+        },
+    }
   },
   module: {
     rules: [
@@ -64,6 +81,12 @@ const config = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
+    new workbox.GenerateSW({
+      swDest: 'service-worker.js',
+      clientsClaim: true,
+      skipWaiting: true,
+      runtimeCaching: []
+    })
   ],
 };
 
