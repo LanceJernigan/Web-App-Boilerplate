@@ -3,6 +3,7 @@ const workbox = require('workbox-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
 
 const config = {
   entry: ['core-js/fn/promise', 'core-js/fn/array/find', 'whatwg-fetch', './src/index.js'],
@@ -13,18 +14,13 @@ const config = {
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
-      maxInitialRequests: Infinity,
-      minSize: 0,
+      chunks: 'initial',
       cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name(module) {
-            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-            return `npm.${packageName.replace('@', '')}`;
-          },
-        },
-      },
+          vendors: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendor'
+          }
+      }
     }
   },
   module: {
@@ -42,8 +38,20 @@ const config = {
         test: /\.css$/,
         include: /(src)/,
         use: [
-          'style-loader',
-          'css-loader',
+          {
+            loader: ExtractCssChunks.loader,
+            options: {
+              hot: true,
+              reloadAll: true
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
+          },
           {
             loader: 'postcss-loader',
             options: {
@@ -71,6 +79,9 @@ const config = {
         from: 'public'
       }
     ]),
+    new ExtractCssChunks({
+      filename: '[name].css',
+    }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
     }),
